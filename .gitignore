@@ -1,0 +1,12 @@
+# zip/tgz
+*.zip
+*.tgz
+
+# node modules
+node_modules
+
+# dist
+dist
+
+# mac
+.DS_Store

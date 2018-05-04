@@ -1,0 +1,6 @@
+view.container
+  view.userinfo
+    button(wx:if!='{{!hasUserInfo && canIUse}}', open-type='getUserInfo', bind:getuserinfo='getUserInfo')  获取头像昵称 
+    UserInfo(wx:else prop-user-info="{{userInfo}}")
+  view.usermotto
+    text.user-motto {{motto}}
