@@ -21,18 +21,18 @@
 * pug 转 wxml（也支持直接使用wxml）
 * less 转 wxss（也支持直接使用wxss）
 * sfc 转 wxml、wxss、json、js（使用vue的单文件组件方式来写小程序）
-* 压缩image
+* 压缩gif/jpge/png/svg
 
 #### 未来实现
 
-* image 支持使用 CDN
+* 图片支持使用 CDN
 
 ## 使用
 
 ### 1、开始
 
 * 克隆本仓库
-* 打开微信开发者工具详情里的如下功能
+* 开启`微信开发者->工具详情`里的如下功能
   * ES6 转 ES5
   * 上传代码时样式自动补全
   * 上传代码时自动压缩
@@ -94,4 +94,4 @@ components中的UserInfo组件用了sfc（.vue）的方式
 
 ## Thanks
 
-Blocks.Tech - 技术团队
+* Blocks.Tech - 技术团队
