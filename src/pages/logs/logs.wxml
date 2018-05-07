@@ -1,4 +1,5 @@
 <view class="container log-list">
+  <view>foo: {{foo}}</view>
   <block wx:for="{{logs}}" wx:for-item="log" wx:key="{{index}}">
     <text class="log-item">{{index + 1}}. {{log}}</text>
   </block>

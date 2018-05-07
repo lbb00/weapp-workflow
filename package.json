@@ -1,6 +1,6 @@
 {
   "name": "weapp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -13,11 +13,13 @@
   "keywords": [],
   "author": "love@onelong.org",
   "license": "MIT",
-  "dependencies": {
-    "babel-plugin-transform-runtime": "^6.23.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "webpack": "^4.7.0",
+    "webpack-stream": "^4.0.3",
     "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
     "colors": "^1.2.3",
     "csscomb": "^4.2.0",
     "cz-conventional-changelog": "^2.1.0",

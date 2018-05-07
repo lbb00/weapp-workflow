@@ -1,25 +1,3 @@
-/**
- * This is a interesting build file
- * It can help you develop wapp faster
- * It will help you complete the following task:
- *  - delete the dist folder
- *  - buid all the files under src folder
- *   - vue -> json/js/wxss/wxml
- *   - less -> wxss
- *   - pug -> wxml
- *   - compress image
- *  - observe all the fiels under src folder and buidl it auto run build
- *  - output these processed files to dist folder
- *
- * Usage:
- *  Clear dist folder:
- *   - gulp4 folder
- *  Just build once:
- *   - gulp4 build
- *  Build & Observe:
- *   - gulp4 dev
- */
-
 const gulp = require('gulp4')
 const watch = require('gulp-watch')
 const del = require('del')
@@ -32,20 +10,12 @@ const gulpPug = require('gulp-pug')
 const gulpImagemin = require('gulp-imagemin')
 const pug = require('pug')
 require('colors')
+const webpack = require('webpack')
+const webpackStream = require('webpack-stream')
 
 // path config
 const distDir = path.join(__dirname, '../dist')
 const srcDir = path.join(__dirname, '../src')
-
-/**
- * get the file extension name
- *
- * @param {any} fileFullName
- * @returns
- */
-const getFileExtension = (fileFullName) => {
-  return fileFullName.substr(fileFullName.lastIndexOf('.') + 1).toLowerCase()
-}
 
 /**
  * get the location of the relative to src
@@ -64,6 +34,27 @@ const info = (type, content) => {
   let date = new Date()
   let dateStr = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
   console.log(`[${dateStr.gray}] ${type.green} ${content}`)
+}
+
+const webpackConfig = {
+  mode: 'production',
+  optimization: {
+    minimize: true
+  },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      options: {
+        presets: ['es2015']
+      }
+    }]
+  },
+  output: {
+    filename: 'index.js',
+    libraryTarget: 'commonjs2'
+  }
 }
 
 /**
@@ -238,6 +229,16 @@ const parseSFC = (filePath) => {
 }
 
 /**
+ * handle - npm script
+ */
+const bundleNpm = (filePath) => {
+  let mDistDir = path.dirname(path.join(distDir, getFilePathRelative(filePath)))
+  info('bundle', filePath)
+  return gulp.src(filePath)
+    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(gulp.dest(mDistDir))
+}
+/**
  * handle - other file
  *
  * @param {any} filePath
@@ -252,21 +253,24 @@ const baseDist = (filePath) => {
 
 /**
  * watcher
- * @param {any} e
  */
 const watchFile = () => {
   const watcher = watch('src/**/*.*', (e) => {
-    let ext = getFileExtension(e.path)
-    if (ext === 'less') {
-      less2wxss(e.path)
-    } else if (ext === 'pug') {
-      pug2wxml(e.path)
-    } else if (ext === 'vue') {
-      parseSFC(e.path)
-    } else if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.svg' || ext === '.gif') {
-      compressImg(e.path)
+    if (path.relative(srcDir, path.dirname(e.path)) === 'npm' && path.extname(e.path) === '.js') {
+      bundleNpm(e.path)
     } else {
-      baseDist(e.path)
+      let ext = path.extname(e.path)
+      if (ext === '.less') {
+        less2wxss(e.path)
+      } else if (ext === '.pug') {
+        pug2wxml(e.path)
+      } else if (ext === '.vue') {
+        parseSFC(e.path)
+      } else if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.svg' || ext === '.gif') {
+        compressImg(e.path)
+      } else {
+        baseDist(e.path)
+      }
     }
     return watcher
   })
@@ -331,16 +335,25 @@ const buildCompressImg = () => {
 }
 
 /**
+ * build - bundle npm script
+ */
+const buildNpm = () => {
+  return gulp.src('./src/npm/*.js')
+    .pipe(rename((_path) => {
+      info('build npm script', `${_path.dirname}/${_path.basename}${_path.extname}`)
+    }))
+    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(gulp.dest(path.join(distDir, '/npm')))
+}
+
+/**
  * build - other file
  */
 const buildOther = () => {
   return gulp.src([
-    './src/{pages,components}/**/{*.wxss,*.js,*.json,*.wxml}',
-    './src/!(pages|components|imgs)/**/*',
-    './src/app.js',
-    './src/app.json',
-    './src/app.wxss',
-    './src/config.js'])
+    './src/{pages,components}/**/*.{wxss,js,json,wxml}',
+    './src/!(pages|components|imgs|npm)/**/*',
+    './src/*.{json,wxss,js}'])
     .pipe(rename((_path) => {
       info('other', `${_path.dirname}/${_path.basename}${_path.extname}`)
     }))
@@ -368,6 +381,7 @@ gulp.task(
   gulp.series(
     'clear-dist',
     gulp.parallel(
+      buildNpm,
       buildSFC,
       buildLess,
       buildPug,
@@ -403,9 +417,6 @@ gulp.task('cancel-sfc', () => {
       info('cancel-sfc', `${_path.dirname}/${_path.basename}${_path.extname}`)
     }))
     .pipe(sfcCancelCompiler())
-    .pipe(rename((_path) => {
-      console.log('111')
-    }))
     .pipe(gulp.dest('./src'))
 })
 
