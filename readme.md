@@ -2,6 +2,8 @@
 
 > 微信小程序开发工作流
 
+[![Build Status](https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master)](https://www.travis-ci.org/loveonelong/weapp-workflow)
+
 欢迎fork、提issue
 
 ## Thanks
