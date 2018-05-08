@@ -7,8 +7,7 @@
     "build": "gulp4 build --gulpfile ./build/gulpfile.js --cwd ./",
     "dev": "gulp4 dev --gulpfile ./build/gulpfile.js --cwd .",
     "eslint": "./node_modules/.bin/eslint --fix --ext .js,.vue ./",
-    "style-unify": "./node_modules/.bin/csscomb src",
-    "commitmsg": "validate-commit-msg"
+    "csscomb": "./node_modules/.bin/csscomb src"
   },
   "keywords": [],
   "author": "love@onelong.org",
