@@ -12,7 +12,7 @@ const pug = require('pug')
 require('colors')
 const webpack = require('webpack')
 const webpackStream = require('webpack-stream')
-
+const cleanCSS = require('gulp-clean-css')
 // path config
 const distDir = path.join(__dirname, '../dist')
 const srcDir = path.join(__dirname, '../src')
@@ -202,17 +202,6 @@ const pug2wxml = (filePath) => {
 }
 
 /**
- * handle - compress image
- */
-const compressImg = (filePath) => {
-  let mDistDir = path.dirname(path.join(distDir, getFilePathRelative(filePath)))
-  info('compress', filePath)
-  return gulp.src(filePath)
-    .pipe(imagemin())
-    .pipe(gulp.dest(mDistDir))
-}
-
-/**
  * handle - single-file components
  */
 const parseSFC = (filePath) => {
@@ -266,8 +255,6 @@ const watchFile = () => {
         pug2wxml(e.path)
       } else if (ext === '.vue') {
         parseSFC(e.path)
-      } else if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.svg' || ext === '.gif') {
-        compressImg(e.path)
       } else {
         baseDist(e.path)
       }
@@ -323,18 +310,6 @@ const buildPug = () => {
 }
 
 /**
- * build - compress image
- */
-const buildCompressImg = () => {
-  return gulp.src('./src/imgs/**/*')
-    .pipe(imagemin())
-    .pipe(rename((_path) => {
-      info('compress', `${_path.dirname}/${_path.basename}${_path.extname}`)
-    }))
-    .pipe(gulp.dest(path.join(distDir, '/imgs')))
-}
-
-/**
  * build - bundle npm script
  */
 const buildNpm = () => {
@@ -352,12 +327,34 @@ const buildNpm = () => {
 const buildOther = () => {
   return gulp.src([
     './src/{pages,components}/**/*.{wxss,js,json,wxml}',
-    './src/!(pages|components|imgs|npm)/**/*',
+    './src/!(pages|components|npm)/**/*',
     './src/*.{json,wxss,js}'])
     .pipe(rename((_path) => {
       info('other', `${_path.dirname}/${_path.basename}${_path.extname}`)
     }))
     .pipe(gulp.dest(distDir))
+}
+
+// -----------------------------------------
+// ----------------- minify ----------------
+// -----------------------------------------
+
+const minifyStyle = () => {
+  return gulp.src('./dist/**/*.wxss')
+    .pipe(cleanCSS())
+    .pipe(rename((_path) => {
+      info('minify wxss', `${_path.dirname}/${_path.basename}${_path.extname}`)
+    }))
+    .pipe(gulp.dest('./dist'))
+}
+
+const minifyImage = () => {
+  return gulp.src('./dist/imgs/**/*')
+    .pipe(imagemin())
+    .pipe(rename((_path) => {
+      info('minify image', `${_path.dirname}/${_path.basename}${_path.extname}`)
+    }))
+    .pipe(gulp.dest('./dist/imgs'))
 }
 
 // --------------------------------------------
@@ -374,10 +371,21 @@ gulp.task('clear-dist', () => {
 })
 
 /**
- * task - build
+ * task - minify
  */
 gulp.task(
-  'build',
+  'minify',
+  gulp.parallel(
+    minifyStyle,
+    minifyImage
+  )
+)
+
+/**
+ * task - init
+ */
+gulp.task(
+  'init',
   gulp.series(
     'clear-dist',
     gulp.parallel(
@@ -385,9 +393,19 @@ gulp.task(
       buildSFC,
       buildLess,
       buildPug,
-      buildCompressImg,
       buildOther
     )
+  )
+)
+
+/**
+ * task - build
+ */
+gulp.task(
+  'build',
+  gulp.series(
+    'init',
+    'minify'
   )
 )
 
@@ -397,7 +415,7 @@ gulp.task(
 gulp.task(
   'dev',
   gulp.series(
-    'build',
+    'init',
     watchFile
   )
 )
