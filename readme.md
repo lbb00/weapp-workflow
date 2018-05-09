@@ -1,8 +1,15 @@
-# weapp-workflow(v0.0.2)
+# weapp-workflow v0.0.3
 
 > 微信小程序开发工作流
 
+[![Build Status](https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master)](https://www.travis-ci.org/loveonelong/weapp-workflow)
+
 欢迎fork、提issue
+
+## Thanks
+
+* Blocks.tech - 技术团队
+* [ChainNews - 链闻社](https://www.chainnews.com/)
 
 ## 简介
 
@@ -31,21 +38,57 @@
 
 ## 使用
 
-### 1、开始
+### 快速开始
+
+#### 首先选一把合适的武器
+
+本工作流建议配合VS Code使用，以便获得良好的语法高亮和语法提示。
+
+在一切开始之前，请在VS Code做如下准备:
+
+* 安装vscode插件`Vue VS Code Extension Pack`以获得VS Code语法高亮提示
+* 安装vscode插件`minapp`以获得语法高亮
+* 如果你的团队注重js风格统一和css风格统一，可以考虑在VS Code中安装并配置`csscomb`、`eslint`等插件
+
+#### 准备项目
 
 * 克隆本仓库
-* 请务必开启如下功能`微信开发者->工具详情`
+* `npm install`安装所有依赖
+* 配置根目录下的`project.config.json`文件
+* 打开微信开发者工具，选择项目，项目目录为本仓库根目录
+* 请务必在`微信开发者->工具详情`中开启如下功能
   * ES6 转 ES5
   * 上传代码时样式自动补全
   * 上传代码时自动压缩
 
-> 为什么这套工作流没有提供压缩wxml、wxss、es5转es6这些功能呢？
+#### 开发模式
 
-这套工作流专注的是小程序开发工具不能处理的事情，希望开发流程更加接近微信小程序原生的模式。
+```shell
+npm run dev
+```
 
-不过，后续这些功能可能会被添加进来。
+该模式会先对所有的文件进行一遍构建，然后监听src目录下那些文件发生改变，当文件改变时再次进行处理（只处理发生改变的文件，所以速度很快）。
 
-### 2、目录结构
+开发模式下不会对图片、样式进行压缩，特别是图片压缩会非常消耗时间，这些都放在构建模式中处理。
+
+你可以通过控制台来看到有哪些资源发生了变化。
+
+#### 构建模式
+
+```shell
+npm run build
+```
+
+该模式会先对所有的文件进行一遍构建，经过测试以后，可以用于上线部署。
+
+#### 风格统一
+
+这里提供了连个命令分别用于检查和自动修复js、css(less)，在持续集成中你也可以使用这两个命令来完成简单代码风格的测试。
+
+* `npm run eslint`
+* `npm run csscomb`
+
+### 目录结构
 
 ```tree
 root
@@ -56,7 +99,7 @@ root
     - pages                    页面目录
     - npm
       * index.js               用于引入用到的npm script，方便打包处理
-    - imgs                     图片资源
+    - imgs                     图片资源，请确保将所有的图片保存在该目录下
     - utils                    工具类
     * app.js                   app.js
     * app.wxss                 app.wxss
@@ -79,27 +122,22 @@ root
 三种不同的实例：
 
 * pages - index页面用了less和pug
-
 * pages - logs页面用了原生写法
-
 * components - UserInfo组件用了sfc（.vue）的方式
 
-### 3、命令
-
-* `npm build`   构建模式
-* `npm run dev` 开发模式，执行之前会自动执行一遍npm build
-* `npm run eslint` 使用eslint检查所有的js、sfc文件
-* `npm run style-unify` 使用csscomb统一所有的less、css书写规范（还不支持在sfc文件中做处理）
-
-### 4、gulp4
+### gulp4
 
 `npm build`和`npm run dev`的背后是两个不同的gulp任务。
 
-除了这两个任务以外，我们还提供了两个辅助任务:
+除了这两个任务以外，还提供了两个辅助任务:
 
 * `cancel-sfc` 取消使用sfc文件，该任务会将`src`目录下所有的`.vue`文件在期目录下拆分为`wxss/less`、`js`、`json`、`wxml/pug`文件。（针对不想使用单文件组件的人）
 * `del-sfc` 删除所有src目录下的sfc文件（.vue文件）。请谨慎使用该命令，除非你确认所有的sfc文件已经拆分完成！
 
-## Thanks
+## Q&A
 
-* Blocks.Tech - 技术团队
+> 为什么这套工作流没有提供压缩wxml、js、es5转es6这些功能呢？
+
+这套工作流专注的是小程序开发工具不能处理的事情，希望开发流程更加接近微信小程序原生的模式。
+
+不过，后续这些功能可能会被添加进来。
