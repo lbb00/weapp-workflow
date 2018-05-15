@@ -3,9 +3,8 @@
 //  export { foo }
 
 // step 2: when you need the package, you can use it like this:
-//  import { foo } from 'relativeUrl/npm'
-
-const foo = 'foo'
+//  import { foo } from '[relative url]/npm'
+import dayjs from 'dayjs'
 export {
-  foo
+  dayjs
 }

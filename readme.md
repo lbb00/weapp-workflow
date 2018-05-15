@@ -98,7 +98,7 @@ root
     - components               组件目录
     - pages                    页面目录
     - npm
-      * index.js               用于引入用到的npm script，方便打包处理
+      * npm.js                 用于引入用到的npm script，方便打包处理(注意: 只有`npm/npm.js`会被webpack打包)
     - imgs                     图片资源，请确保将所有的图片保存在该目录下
     - utils                    工具类
     * app.js                   app.js

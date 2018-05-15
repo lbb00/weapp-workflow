@@ -52,7 +52,7 @@ const webpackConfig = {
     }]
   },
   output: {
-    filename: 'index.js',
+    filename: 'npm.js',
     libraryTarget: 'commonjs2'
   }
 }
@@ -313,7 +313,7 @@ const buildPug = () => {
  * build - bundle npm script
  */
 const buildNpm = () => {
-  return gulp.src('./src/npm/*.js')
+  return gulp.src('./src/npm/npm.js')
     .pipe(rename((_path) => {
       info('build npm script', `${_path.dirname}/${_path.basename}${_path.extname}`)
     }))

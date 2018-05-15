@@ -12,7 +12,9 @@
   "keywords": [],
   "author": "love@onelong.org",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "dayjs": "^1.6.0"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",
