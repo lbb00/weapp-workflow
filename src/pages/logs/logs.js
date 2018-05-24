@@ -1,15 +1,12 @@
-import util from '../../utils/util.js'
-import { foo } from '../../npm/index'
+import { dayjs } from '../../npm/npm'
 Page({
   data: {
-    logs: [],
-    foo: foo
+    logs: []
   },
   onLoad: function () {
-    console.log(foo)
     this.setData({
       logs: (wx.getStorageSync('logs') || []).map(log => {
-        return util.formatTime(new Date(log))
+        return dayjs(new Date(log)).format('YYYY年MM月DD日 HH:mm:ss')
       })
     })
   }
