@@ -1,15 +1,23 @@
 # weapp-workflow v0.0.3
 
-> 微信小程序开发工作流
+<p align="center"><a href="https://github.com/loveonelong/weapp-workflow" target="_blank" rel="noopener noreferrer"><img width="100" src="https://github.com/loveonelong/weapp-workflow/doc/imgs/weapp-workflow-logo.png" alt="weapp-workflow logo"></a></p>
 
-[![Build Status](https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master)](https://www.travis-ci.org/loveonelong/weapp-workflow)
+<p align="center">
+   <a href="https://www.travis-ci.org/loveonelong/weapp-workflow"><img src="https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master" alt="travis ci"></a>
+ </p>
+
+> 微信小程序开发工作流
 
 欢迎fork、提issue
 
 ## Thanks
 
 * Blocks.tech - 技术团队
-* [ChainNews - 链闻社](https://www.chainnews.com/)
+* [ChainNews - 链闻社](https://www.chainnews.com)
+
+<p align="center">
+   <a href="https://www.chainnews.com"><img src="https://github.com/loveonelong/weapp-workflow/doc/imgs/logo-ce-blue.png" alt="ChainNews"></a>
+ </p>
 
 ## 简介
 
@@ -54,12 +62,12 @@
 
 * 克隆本仓库
 * `npm install`安装所有依赖
-* 配置根目录下的`project.config.json`文件
-* 打开微信开发者工具，选择项目，项目目录为本仓库根目录
+* 配置根目录下的`project.config.json`文件
+* 打开微信开发者工具，选择项目，项目目录为本仓库根目录
 * 请务必在`微信开发者->工具详情`中开启如下功能
   * ES6 转 ES5
   * 上传代码时样式自动补全
-  * 上传代码时自动压缩
+  * 上传代码时自动压缩
 
 #### 开发模式
 
@@ -67,7 +75,7 @@
 npm run dev
 ```
 
-该模式会先对所有的文件进行一遍构建，然后监听src目录下那些文件发生改变，当文件改变时再次进行处理（只处理发生改变的文件，所以速度很快）。
+该模式会先对所有的文件进行一遍构建，然后监听src目录下那些文件发生改变，当文件改变时再次进行处理（只处理发生改变的文件，所以速度很快）。
 
 开发模式下不会对图片、样式进行压缩，特别是图片压缩会非常消耗时间，这些都放在构建模式中处理。
 
@@ -79,7 +87,7 @@ npm run dev
 npm run build
 ```
 
-该模式会先对所有的文件进行一遍构建，经过测试以后，可以用于上线部署。
+该模式会先对所有的文件进行一遍构建，经过测试以后，可以用于上线部署。
 
 #### 风格统一
 
@@ -138,6 +146,6 @@ root
 
 > 为什么这套工作流没有提供压缩wxml、js、es5转es6这些功能呢？
 
-这套工作流专注的是小程序开发工具不能处理的事情，希望开发流程更加接近微信小程序原生的模式。
+这套工作流专注的是小程序开发工具不能处理的事情，希望开发流程更加接近微信小程序原生的模式。
 
 不过，后续这些功能可能会被添加进来。
