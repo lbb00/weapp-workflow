@@ -1,7 +1,7 @@
 view.container
   view.userinfo
     button(wx:if!='{{!hasUserInfo && canIUse}}', open-type='getUserInfo', bind:getuserinfo='getUserInfo')  获取头像昵称 
-    UserInfo(wx:else prop-user-info="{{userInfo}}")
+    user-info(wx:else prop-user-info="{{userInfo}}")
   view.usermotto
     text.user-motto {{motto}}
-  image.logo(src="../../imgs/weapp.jpeg")
+  x-image(wx:for="{{100}}" class="logo" wx:key="{{index}}" src="http://s1.51cto.com/wyfs02/M02/8A/A1/wKiom1g1d4KzJLj_AAENEPluz5E910.jpg-wh_651x-s_1750868483.jpg" lazy-load="{{true}}" bind:error="_error" bind:load="_load")

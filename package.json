@@ -9,6 +9,10 @@
     "eslint": "./node_modules/.bin/eslint --fix --ext .js,.vue ./",
     "csscomb": "./node_modules/.bin/csscomb src"
   },
+  "repository":{
+    "type": "git",
+    "url": "https:github.com/loveonelong/weapp-workflow"
+  },
   "keywords": [],
   "author": "love@onelong.org",
   "license": "MIT",

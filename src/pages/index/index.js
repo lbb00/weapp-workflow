@@ -37,11 +37,17 @@ Page({
     }
   },
   getUserInfo: function (e) {
-    console.log(e)
+    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  _load (e) {
+    console.log(e, '图片加载成功')
+  },
+  _error (e) {
+    console.log(e, '图片加载失败')
   }
 })
