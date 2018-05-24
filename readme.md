@@ -1,16 +1,16 @@
-# weapp-workflow v0.0.3
-
 <p align="center"><a href="https://github.com/loveonelong/weapp-workflow" target="_blank" rel="noopener noreferrer"><img width="100" src="https://cdn.rawgit.com/loveonelong/weapp-workflow/28d49946/docs/imgs/weapp-workflow-logo.png" alt="weapp-workflow logo"></a></p>
 
 <p align="center">
    <a href="https://www.travis-ci.org/loveonelong/weapp-workflow"><img src="https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master" alt="travis ci"></a>
  </p>
 
-> 微信小程序开发工作流
+# weapp-workflow
 
-欢迎fork、提issue
+ 微信小程序开发工作流
 
-## Thanks
+> v0.0.4
+
+## Who is using it
 
 * Blocks.tech - 区块科技
 * [ChainNews - 链闻社](https://www.chainnews.com)
