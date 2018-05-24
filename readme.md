@@ -1,6 +1,6 @@
 # weapp-workflow v0.0.3
 
-<p align="center"><a href="https://github.com/loveonelong/weapp-workflow" target="_blank" rel="noopener noreferrer"><img width="100" src="https://cdn.rawgit.com/loveonelong/weapp-workflow/tree/fix/doc/imgs/weapp-workflow-logo.png" alt="weapp-workflow logo"></a></p>
+<p align="center"><a href="https://github.com/loveonelong/weapp-workflow" target="_blank" rel="noopener noreferrer"><img width="100" src="https://cdn.rawgit.com/loveonelong/weapp-workflow/docs/imgs/weapp-workflow-logo.png" alt="weapp-workflow logo"></a></p>
 
 <p align="center">
    <a href="https://www.travis-ci.org/loveonelong/weapp-workflow"><img src="https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master" alt="travis ci"></a>
@@ -12,11 +12,11 @@
 
 ## Thanks
 
-* Blocks.tech - 技术团队
+* Blocks.tech - 区块科技
 * [ChainNews - 链闻社](https://www.chainnews.com)
 
 <p align="center">
-   <a href="https://www.chainnews.com"><img src="https://cdn.rawgit.com/loveonelong/weapp-workflow/tree/fix/doc/imgs/logo-ce-blue.png" alt="ChainNews"></a>
+   <a href="https://www.chainnews.com"><img src="https://cdn.rawgit.com/loveonelong/weapp-workflow/docs/imgs/logo-ce-blue.png" alt="ChainNews" width="150"></a>
  </p>
 
 ## 简介
