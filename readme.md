@@ -1,6 +1,6 @@
 # weapp-workflow v0.0.3
 
-<p align="center"><a href="https://github.com/loveonelong/weapp-workflow" target="_blank" rel="noopener noreferrer"><img width="100" src="https://github.com/loveonelong/weapp-workflow/doc/imgs/weapp-workflow-logo.png" alt="weapp-workflow logo"></a></p>
+<p align="center"><a href="https://rawgit.com/loveonelong/weapp-workflow" target="_blank" rel="noopener noreferrer"><img width="100" src="https://github.com/loveonelong/weapp-workflow/doc/imgs/weapp-workflow-logo.png" alt="weapp-workflow logo"></a></p>
 
 <p align="center">
    <a href="https://www.travis-ci.org/loveonelong/weapp-workflow"><img src="https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master" alt="travis ci"></a>
