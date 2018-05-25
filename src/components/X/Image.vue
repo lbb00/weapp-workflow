@@ -63,11 +63,11 @@ Component({
     // 扩展
     loadHolder: {
       type: String,
-      value: '/imgs/weapp.jpeg'
+      value: ''
     },
     errorHolder: {
       type: String,
-      value: '/imgs/weapp.jpeg'
+      value: ''
     }
   },
   data: {
