@@ -10,8 +10,6 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"client": "./dist",
-	"miniprogramRoot": "./dist",
 	"compileType": "miniprogram",
 	"libVersion": "1.9.2",
 	"appid": "touristappid",
