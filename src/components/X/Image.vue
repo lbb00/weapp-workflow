@@ -25,7 +25,7 @@ example
 </json>
 
 <template lang="pug">
-image.loader(wx:if="{{status === 0}}" src="{{src}}"  lazy-load="{{lazyLoad}}" bind:error="binderror" bind:load="load")
+image.loader(wx:if="{{status === 0}}" src="{{src}}"  lazy-load="{{lazyLoad}}" bind:error="error" bind:load="load")
 image.target(src!="{{status === 0 ? loadHolder : (status === 1 ? src : errorHolder)}}" mode="{{mode}}")
 </template>    
 
