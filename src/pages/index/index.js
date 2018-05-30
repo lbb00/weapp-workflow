@@ -6,7 +6,8 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    showPopup: false
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -37,7 +38,6 @@ Page({
     }
   },
   getUserInfo: function (e) {
-    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -49,5 +49,16 @@ Page({
   },
   _error (e) {
     console.log(e, '图片加载失败')
+  },
+  _popup () {
+    this.setData({
+      showPopup: !this.data.showPopup
+    })
+  },
+  _popupOnShow () {
+    console.log('popup show')
+  },
+  _popupOnHide () {
+    console.log('popup hide')
   }
 })

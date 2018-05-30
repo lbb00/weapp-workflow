@@ -2,6 +2,7 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "user-info": "/components/UserInfo/UserInfo",
-    "x-image": "/components/X/Image"
+    "x-image": "/components/X/Image",
+    "x-popup": "/components/X/Popup"
   }
 }
