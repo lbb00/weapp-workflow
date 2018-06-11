@@ -25,8 +25,13 @@ example
 </json>
 
 <template lang="pug">
-image.loader(wx:if="{{status === 0}}" src="{{src}}"  lazy-load="{{lazyLoad}}" bind:error="error" bind:load="load")
+
+// 用于展示的image组件
 image.target(src!="{{status === 0 ? loadHolder : (status === 1 ? src : errorHolder)}}" mode="{{mode}}")
+
+// 用于加载图片的image组件
+image.loader(wx:if="{{status === 0}}" src="{{src}}"  lazy-load="{{lazyLoad}}" bind:error="error" bind:load="load")
+
 </template>    
 
 <style lang="less">
@@ -82,9 +87,9 @@ Component({
     },
     error (e) {
       // 如果error holder不存在，load holder存在，则将error holder替换为load holder
-      if (this.errorHolder === '' && this.loadHolder !== '') {
+      if (this.data.errorHolder === '' && this.data.loadHolder !== '') {
         this.setData({
-          loadHolder: this.data.errorHolder,
+          errorHolder: this.data.loadHolder,
           status: -1
         })
       } else {
