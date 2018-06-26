@@ -6,6 +6,8 @@
 
 # weapp-workflow
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/loveonelong/weapp-workflow.svg)](https://greenkeeper.io/)
+
  微信小程序开发工作流
 
 > v0.0.4
