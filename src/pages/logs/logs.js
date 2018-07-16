@@ -1,4 +1,4 @@
-import { dayjs } from '../../npm/npm'
+import { dayjs } from '../../npm/index'
 Page({
   data: {
     logs: []

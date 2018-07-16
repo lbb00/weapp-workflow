@@ -1,6 +1,8 @@
 {
   "pages":[
-    "pages/index/index",
+    "pages/index",
+    "pages/x-image",
+    "pages/x-popup",
     "pages/logs/logs"
   ],
   "window":{

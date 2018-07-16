@@ -10,10 +10,10 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"client": "./dist",
-	"miniprogramRoot": "./dist",
 	"compileType": "miniprogram",
 	"libVersion": "1.9.2",
+	"client": "./dist",
+	"miniprogramRoot": "./dist",
 	"appid": "touristappid",
 	"projectname": "weapp-workflow",
 	"condition": {

@@ -12,7 +12,9 @@ const pug = require('pug')
 require('colors')
 const webpack = require('webpack')
 const webpackStream = require('webpack-stream')
+const named = require('vinyl-named')
 const cleanCSS = require('gulp-clean-css')
+
 // path config
 const distDir = path.join(__dirname, '../dist')
 const srcDir = path.join(__dirname, '../src')
@@ -34,27 +36,6 @@ const info = (type, content) => {
   let date = new Date()
   let dateStr = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
   console.log(`[${dateStr.gray}] ${type.green} ${content}`)
-}
-
-const webpackConfig = {
-  mode: 'production',
-  optimization: {
-    minimize: true
-  },
-  module: {
-    rules: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      options: {
-        presets: ['es2015']
-      }
-    }]
-  },
-  output: {
-    filename: 'npm.js',
-    libraryTarget: 'commonjs2'
-  }
 }
 
 /**
@@ -85,7 +66,8 @@ const imagemin = () => {
  */
 const gPug = () => {
   return gulpPug({
-    doctype: 'html'
+    doctype: 'html',
+    pretty: true
   })
 }
 
@@ -99,7 +81,7 @@ const sfcCompiler = () => {
         cb(null, content)
       },
       pug: function (content, cb, compiler, filePath) {
-        content = pug.render(content, { doctype: 'html' })
+        content = pug.render(content, { doctype: 'html', pretty: true })
         cb(null, content)
       }
     },
@@ -218,16 +200,6 @@ const parseSFC = (filePath) => {
 }
 
 /**
- * handle - npm script
- */
-const bundleNpm = (filePath) => {
-  let mDistDir = path.dirname(path.join(distDir, getFilePathRelative(filePath)))
-  info('bundle', filePath)
-  return gulp.src(filePath)
-    .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest(mDistDir))
-}
-/**
  * handle - other file
  *
  * @param {any} filePath
@@ -246,7 +218,7 @@ const baseDist = (filePath) => {
 const watchFile = () => {
   const watcher = watch('src/**/*.*', (e) => {
     if (path.relative(srcDir, path.dirname(e.path)) === 'npm' && path.extname(e.path) === '.js') {
-      bundleNpm(e.path)
+      buildNpm(e.path)
     } else {
       let ext = path.extname(e.path)
       if (ext === '.less') {
@@ -310,18 +282,6 @@ const buildPug = () => {
 }
 
 /**
- * build - bundle npm script
- */
-const buildNpm = () => {
-  return gulp.src('./src/npm/npm.js')
-    .pipe(rename((_path) => {
-      info('build npm script', `${_path.dirname}/${_path.basename}${_path.extname}`)
-    }))
-    .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest(path.join(distDir, '/npm')))
-}
-
-/**
  * build - other file
  */
 const buildOther = () => {
@@ -333,6 +293,49 @@ const buildOther = () => {
       info('other', `${_path.dirname}/${_path.basename}${_path.extname}`)
     }))
     .pipe(gulp.dest(distDir))
+}
+
+/**
+ * build - bundle npm script
+ */
+const buildNpm = (filePath) => {
+  const webpackConfig = {
+    mode: 'production',
+    optimization: {
+      minimize: true
+    },
+    module: {
+      rules: [{
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: ['es2015']
+        }
+      }]
+    },
+    output: {
+      filename: '[name].js',
+      libraryTarget: 'commonjs2'
+    }
+  }
+  if (typeof filePath === 'string') {
+    // dev
+    let mDistDir = path.dirname(path.join(distDir, getFilePathRelative(filePath)))
+    info('bundle', filePath)
+    return gulp.src(filePath)
+      .pipe(webpackStream(webpackConfig, webpack))
+      .pipe(gulp.dest(mDistDir))
+  } else {
+    // build
+    return gulp.src('./src/npm/*.js')
+      .pipe(rename((_path) => {
+        info('build npm script', `${_path.dirname}/${_path.basename}${_path.extname}`)
+      }))
+      .pipe(named())
+      .pipe(webpackStream(webpackConfig, webpack))
+      .pipe(gulp.dest(path.join(distDir, '/npm')))
+  }
 }
 
 // -----------------------------------------

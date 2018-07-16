@@ -9,7 +9,7 @@
     "eslint": "./node_modules/.bin/eslint --fix --ext .js,.vue ./",
     "csscomb": "./node_modules/.bin/csscomb src"
   },
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https:github.com/loveonelong/weapp-workflow"
   },
@@ -43,6 +43,7 @@
     "gulp-watch": "^5.0.0",
     "gulp4": "^4.0.2",
     "pug": "^2.0.3",
+    "vinyl-named": "^1.1.0",
     "webpack": "^4.7.0",
     "webpack-stream": "^4.0.3"
   }
