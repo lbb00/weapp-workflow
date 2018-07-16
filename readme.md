@@ -2,11 +2,10 @@
 
 <p align="center">
    <a href="https://www.travis-ci.org/loveonelong/weapp-workflow"><img src="https://www.travis-ci.org/loveonelong/weapp-workflow.svg?branch=master" alt="travis ci"></a>
+    <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/loveonelong/weapp-workflow.svg" alt="Greenkeeper badge"></a>
  </p>
 
 # weapp-workflow
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/loveonelong/weapp-workflow.svg)](https://greenkeeper.io/)
 
  微信小程序开发工作流
 
