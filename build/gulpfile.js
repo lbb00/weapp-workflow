@@ -66,7 +66,8 @@ const imagemin = () => {
  */
 const gPug = () => {
   return gulpPug({
-    doctype: 'html'
+    doctype: 'html',
+    pretty: true
   })
 }
 
@@ -80,7 +81,7 @@ const sfcCompiler = () => {
         cb(null, content)
       },
       pug: function (content, cb, compiler, filePath) {
-        content = pug.render(content, { doctype: 'html' })
+        content = pug.render(content, { doctype: 'html', pretty: true })
         cb(null, content)
       }
     },
