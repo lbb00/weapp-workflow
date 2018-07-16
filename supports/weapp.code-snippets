@@ -1,6 +1,6 @@
 {
   "weapp-page": {
-    "prefix": "page",
+    "prefix": "wx-page",
     "body": [
       "<json>",
       "{",
@@ -11,6 +11,7 @@
       "</json>",
       "",
       "<template lang=\"pug\">",
+      "",
       "</template>",
       "",
       "<script>",
@@ -52,7 +53,7 @@
     "description": "weapp pages"
   },
   "weapp-components": {
-    "prefix": "components",
+    "prefix": "wx-components",
     "body": [
       "<json>",
       "{",
@@ -64,10 +65,6 @@
       "<template lang=\"pug\">",
       "",
       "</template>",
-      "",
-      "<style lang=\"less\">",
-      "",
-      "</style>",
       "",
       "<script>",
       "Component({",
@@ -84,7 +81,11 @@
       "",
       "  }",
       "})",
-      "</script>"
+      "</script>",
+      "",
+      "<style lang=\"less\">",
+      "",
+      "</style>",
     ],
     "description": "weapp components"
   }
