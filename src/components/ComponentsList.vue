@@ -27,7 +27,6 @@ Component({
   },
   methods: {
     _onTap (e) {
-      console.log(e)
       let index = e.currentTarget.dataset.index
       wx.navigateTo({
         url: this.data.list[index].url
