@@ -28,23 +28,10 @@ example
 
 // 用于展示的image组件
 image.target(src!="{{status === 0 ? loadHolder : (status === 1 ? src : errorHolder)}}" mode="{{mode}}")
-
 // 用于加载图片的image组件
 image.loader(wx:if="{{status === 0}}" src="{{src}}"  lazy-load="{{lazyLoad}}" bind:error="error" bind:load="load")
 
 </template>    
-
-<style lang="less">
-.loader {
-  width: 0;
-  height: 0;
-}
-.target {
-  width: 100%;
-  height: 100%;
-}
-
-</style>
 
 <script>
 Component({
@@ -102,3 +89,15 @@ Component({
   }
 })
 </script>
+
+<style lang="less">
+.loader {
+  width: 0;
+  height: 0;
+}
+.target {
+  width: 100%;
+  height: 100%;
+}
+
+</style>

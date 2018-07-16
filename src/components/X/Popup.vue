@@ -22,6 +22,48 @@ view(class="{{show ? 'show':''}}")
     slot
 </template>
 
+<script>
+Component({
+  options: {
+    multipleSlots: true
+  },
+  properties: {
+    show: {
+      value: false,
+      type: Boolean,
+      observer (n, o) {
+        if (n === true) {
+          this.setData({
+            maskZIndex: 999
+          })
+          this.triggerEvent('on-show')
+        } else {
+          this.triggerEvent('on-hide')
+
+          // 在css动画之后设置z-index:-1，避免遮罩层影响点击
+          setTimeout(() => {
+            this.setData({
+              maskZIndex: -1
+            })
+          }, 400)
+        }
+      }
+    }
+  },
+  data: {
+    maskZIndex: -999
+  },
+  methods: {
+    tapMask () {
+      this.triggerEvent('tap-mask')
+    },
+    catchTapBody () {},
+    catchTouch () {}
+  }
+})
+</script>
+
+
 <style lang="less">
 .mask {
   position: fixed;
@@ -62,44 +104,3 @@ view(class="{{show ? 'show':''}}")
 }
 
 </style>
-
-<script>
-Component({
-  options: {
-    multipleSlots: true
-  },
-  properties: {
-    show: {
-      value: false,
-      type: Boolean,
-      observer (n, o) {
-        if (n === true) {
-          this.setData({
-            maskZIndex: 999
-          })
-          this.triggerEvent('on-show')
-        } else {
-          this.triggerEvent('on-hide')
-
-          // 在过渡动画之后设置z-index:-1，避免遮罩层影响点击
-          setTimeout(() => {
-            this.setData({
-              maskZIndex: -1
-            })
-          }, 400)
-        }
-      }
-    }
-  },
-  data: {
-    maskZIndex: -999
-  },
-  methods: {
-    tapMask () {
-      this.triggerEvent('tap-mask')
-    },
-    catchTapBody () {},
-    catchTouch () {}
-  }
-})
-</script>
