@@ -83,16 +83,19 @@ const sfcCompiler = () => {
       pug: function (content, cb, compiler, filePath) {
         content = pug.render(content, { doctype: 'html', pretty: true })
         cb(null, content)
+      },
+      wxml: function (content, cb, compiler, filePath) {
+        cb(null, content)
       }
     },
     tags: {
       json (lang, filePath, node) {
         return 'json'
       },
-      config (lang, filePath, node) {
+      config () {
         return 'json'
       },
-      template (lang, filePath, node) {
+      template () {
         return 'wxml'
       },
       style () {
@@ -100,11 +103,6 @@ const sfcCompiler = () => {
       },
       script () {
         return 'js'
-      }
-    },
-    outputModifiers: {
-      script: function (lang, filePath, content, basePath) {
-        return content
       }
     }
   })
