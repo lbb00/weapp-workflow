@@ -12,5 +12,6 @@ branches:
   only:
     - master
     - /^dev/.*$/
-    - /^hotfix/.*$/
+    - /^feature/.*$/
+    - /^fix/.*$/
     - /^greenkeeper/.*$/
