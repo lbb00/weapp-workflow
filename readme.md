@@ -82,24 +82,33 @@ root
   - build                      构建相关代码
   - dist                       构建后生成的代码
   - src                        开发目录
-    - components               组件目录
+    - api
+      * api.js                 推荐将所有的 api 请求在这里做一步封装
+    - components               组件
       - X                      一些封装好的小程序常用组件(不需要可以删除他们，以免影响小程序的大小)
-    - pages                    页面目录
+    - pages                    页面
+      * A.vue
+      * B.vue
     - npm
       * index.js               用于引入 npm modules
     - imgs                     图片资源，请确保将所有的图片保存在该目录下
-    - utils                    工具类
+    - utils
+      * utils.js               工具聚合
+      * request.js             简单封装的 Promise 风格请求库
+      * weappx.js              增强开发功能
     * app.js                   app.js
     * app.wxss                 app.wxss
     * app.json                 app.json
     * config.js                config.js
-  - supports                   辅助工具
-    * vscode.code-snippets      将该文件导入 vscode 中的用户代码片段，可以在 sfc 文件中获得代码片段提示
+  - supports
+    * vscode.code-snippets     将该文件导入 vscode 中的用户代码片段，可以在 sfc 文件中获得代码片段提示
   - typings
     * wx.d.ts                  微信小程序接口的类型文件，在 vscode 中可以获得代码提示
   * .csscomb.json              对 css 进行格式化、排序，统一
   * .eslintignore              eslint 忽略文件
   * .eslintrc.js               eslint 规则
+  * .npmrc                     ...
+  * .travis.yml                持续集成
   * jsconfig.json              配合 typings 下的 ts 文件，引导 vscode 提示代码
   * package.json               ...
   * package-lock.json          ...
