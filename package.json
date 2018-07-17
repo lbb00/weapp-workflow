@@ -45,6 +45,6 @@
     "pug": "^2.0.3",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.16.1",
-    "webpack-stream": "^4.0.3"
+    "webpack-stream": "^5.0.0"
   }
 }
