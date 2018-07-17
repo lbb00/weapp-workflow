@@ -44,6 +44,8 @@
 #### 未来实现
 
 * 支持 scss
+* 增加 http 消息队列
+* 增加 EventBus
 * 支持 postcss
 * 图片支持使用 CDN
 * 增加封装好的常用组件
