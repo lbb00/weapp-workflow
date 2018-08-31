@@ -33,7 +33,7 @@
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-node": "^7.0.0",
     "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "gulp-clean-css": "^3.9.4",
     "gulp-imagemin": "^4.1.0",
     "gulp-less": "^4.0.0",
