@@ -20,7 +20,7 @@
     "dayjs": "^1.7.4"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.2",
+    "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "colors": "^1.2.3",
