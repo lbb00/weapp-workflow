@@ -17,7 +17,7 @@
   "author": "love@onelong.org",
   "license": "MIT",
   "dependencies": {
-    "dayjs": "^1.7.4"
+    "dayjs": "^1.7.8"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.0",
