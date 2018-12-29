@@ -44,7 +44,7 @@
     "gulp4": "^4.0.2",
     "pug": "^2.0.3",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.16.1",
+    "webpack": "^4.28.3",
     "webpack-stream": "^5.0.0"
   }
 }
