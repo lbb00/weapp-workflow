@@ -1,3 +1,5 @@
+> 本项目已经不再维护，仅供参考，建议使用[tarojs](https://github.com/NervJS/taro)开发
+
 <p align="center"><a href="https://github.com/loveonelong/weapp-workflow" target="_blank" rel="noopener noreferrer"><img width="100" src="https://github.com/loveonelong/weapp-workflow/raw/master/docs/imgs/weapp-workflow-logo.png" alt="weapp-workflow logo"></a></p>
 
 <p align="center">
